@@ -1,0 +1,40 @@
+<div class="container w-auto-xs">
+  <a href class="navbar-brand block m-t">Angular Web App</a>
+  <div class="m-b-lg">
+    <div class="wrapper text-center">
+      <strong>Search Tracks</strong>
+    </div>
+    <form name="form" class="form-validation">
+      <div class="list-group list-group-sm">
+        <div class="list-group-item">
+          <input type="text" placeholder="Artist/Track name" class="form-control no-border" ng-model="search.term" required>
+        </div>
+        <div class="list-group-item">
+           <input type="number" placeholder="Number of tracks" class="form-control no-border" ng-model="search.limit" required>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-lg btn-primary btn-block" ng-click="findArtist(search)" ng-disabled='form.$invalid'>Search</button>
+    </form>
+  </div>
+</div>
+
+<div class="wrapper-md" ng-if="trackCount">
+  <tabset class="tab-container">
+    <tab>
+      <tab-heading>
+        Results <span class="badge badge-sm m-l-xs">{{trackCount}}</span>
+      </tab-heading>
+      <ul class="list-group list-group-alt list-group-lg no-borders pull-in m-b-none">
+        <li class="list-group-item" ng-repeat="track in tracks">
+          <a href="#" class="pull-left thumb-md m-r">
+            <img ng-src="{{track.artworkUrl60}}" alt="..." class="img-circle">
+          </a>
+          <div class="clear">
+            <a href="#" class="h4 text-primary m-b-sm block">{{track.trackName}} ({{track.artistName}}) <span class="label label-sm bg-info">{{track.trackPrice}} </span> <span class="label label-sm bg-danger">{{track.trackHdPrice}}</span></a>
+            <div>{{track.shortDescription}}<br><br></div>
+          </div>
+        </li>
+      </ul>
+    </tab>
+  </tabset>
+</div>
